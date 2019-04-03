@@ -3,20 +3,20 @@ import {Animated, Text, View} from "react-native";
 
 class FadeInView extends React.Component {
     state = {
-        fadeAnim: new Animated.Value(0)     // initial value for opacity: 0
+        fadeAnim: new Animated.Value(0),     // initial value for opacity: 0
     }
 
     componentDidMount(): void {
         Animated.sequence([
             // decay, then spring to start and twirl
-            Animated.decay(position, {
+            Animated.decay(50, {
                 // coast to a stop
                 velocity: {x: gestureState.vx, y: gestureState.vy}, // velocity from gesture release
                 deceleration: 0.997,
             }),
             Animated.parallel([
                 // after decay, in parallel:
-                Animated.spring(position, {
+                Animated.spring(50, {
                     toValue: {x: 0, y: 0}, // return to start
                 }),
                 Animated.timing(twirl, {
